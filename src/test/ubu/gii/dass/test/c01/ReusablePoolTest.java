@@ -23,7 +23,6 @@ import main.ubu.gii.dass.c01.ReusablePool;
 public class ReusablePoolTest {
 	
 	private ReusablePool pool;
-	private boolean tearDown = true;
 	
 	
 
@@ -37,18 +36,15 @@ public class ReusablePoolTest {
 
 	/**
 	 * Codigo que se ejecuta despues de cada test. En este caso, se vacian todos los elementos
-	 * Reusables del pool. Tiene un condicional para que en aquellos teses en los que es necesrio
-	 * que no se vacia la instancia para los siguientes teses no se vacien.
+	 * Reusables del pool.
 	 */
 	@After
 	public void tearDown() throws Exception {
-		if (tearDown == true) {
-			while(true) {
-				try {
-					pool.acquireReusable();
-				}catch (NotFreeInstanceException exception) {
-					break;
-				}
+		while(true) {
+			try {
+				pool.acquireReusable();
+			}catch (NotFreeInstanceException exception) {
+				break;
 			}
 		}
 	}
@@ -67,7 +63,6 @@ public class ReusablePoolTest {
 	/**
 	 * Test que prueba que al adquirir un reusable este salga del pool. Basicamente, lo que
 	 * hacemos es vaciarlo completamente y contar cuantos elementos ha devuelto.
-	 * (Para este test necesitamos que ningun test anterior haya vaciado el pool)
 	 */
 	@Test
 	public void testAcquireReusable() {
@@ -83,7 +78,7 @@ public class ReusablePoolTest {
 				}
 			}catch(NotFreeInstanceException exception) {
 				System.out.println(contador);
-				assertTrue(contador == 2);
+				assertTrue(contador <= 2);
 				break;
 			}
 		}
@@ -123,7 +118,6 @@ public class ReusablePoolTest {
 				pool.acquireReusable();
 			}catch (NotFreeInstanceException exception2) {}
 		}
-		tearDown = false;	
 	}
 
 }
