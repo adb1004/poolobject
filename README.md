@@ -9,5 +9,7 @@ Workshop to use good practices in software developmemnt: testing and measurement
 
 Authors:
 
-- Carlos Lopez Nozal
-- Jesus Alonso Abad
+- Carlos Lopez Nozal (teacher)
+- Jesus Alonso Abad (teacher)
+- Iván Cortés Aliende (student)
+- Alberto Diez Busto (student)
