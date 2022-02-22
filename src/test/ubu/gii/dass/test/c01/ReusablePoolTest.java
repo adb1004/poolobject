@@ -23,12 +23,12 @@ import main.ubu.gii.dass.c01.ReusablePool;
 public class ReusablePoolTest {
 	
 	private ReusablePool pool;
-	private int testPasados = 0;
+	private boolean tearDown = true;
 	
 	
 
 	/**
-	 * @throws java.lang.Exception
+	 * Codigo que se ejecuta antes de cada test. En este caso, se guarda la instancia del pool
 	 */
 	@Before
 	public void setUp() throws Exception {
@@ -36,12 +36,13 @@ public class ReusablePoolTest {
 	}
 
 	/**
-	 * @throws java.lang.Exception
+	 * Codigo que se ejecuta despues de cada test. En este caso, se vacian todos los elementos
+	 * Reusables del pool. Tiene un condicional para que en aquellos teses en los que es necesrio
+	 * que no se vacia la instancia para los siguientes teses no se vacien.
 	 */
 	@After
 	public void tearDown() throws Exception {
-		
-		if (testPasados == 3) {
+		if (tearDown == true) {
 			while(true) {
 				try {
 					pool.acquireReusable();
@@ -53,18 +54,20 @@ public class ReusablePoolTest {
 	}
 
 	/**
-	 * Test method for {@link ubu.gii.dass.c01.ReusablePool#getInstance()}.
+	 * Test que prueba que siempre se devuelva la misma instancia. Para ello, creamos otro pool,
+	 * almacenamos la instancia devuelta y comprobamos que sea identico al que ya tenemos.
 	 */
 	@Test
 	public void testGetInstance() {
 		ReusablePool pool2 = ReusablePool.getInstance();
 		
 		assertEquals(pool,pool2);
-		testPasados++;
 	}
 
 	/**
-	 * Test method for {@link ubu.gii.dass.c01.ReusablePool#acquireReusable()}.
+	 * Test que prueba que al adquirir un reusable este salga del pool. Basicamente, lo que
+	 * hacemos es vaciarlo completamente y contar cuantos elementos ha devuelto.
+	 * (Para este test necesitamos que ningun test anterior haya vaciado el pool)
 	 */
 	@Test
 	public void testAcquireReusable() {
@@ -84,11 +87,13 @@ public class ReusablePoolTest {
 				break;
 			}
 		}
-		testPasados++;
 	}
 
 	/**
-	 * Test method for {@link ubu.gii.dass.c01.ReusablePool#releaseReusable(ubu.gii.dass.c01.Reusable)}.
+	 * Test que pone a prueba el metodo encargado de introducir nuevos elementos al pool. Este 
+	 * no deberia dejarnos introducir un elemento repetido. Para ello, declaramos un elemento Reusable
+	 * nuevo y lo intentamos introducir dos veces. La primera deberia dejarnos, pero la segunda deberia
+	 * devolvernos una excepcion de instancia duplicada.
 	 */
 	@Test
 	public void testReleaseReusable() {
@@ -112,13 +117,13 @@ public class ReusablePoolTest {
 			
 		}
 		
-		// Retiramos el objeto introducido
+		// Retiramos el objeto introducido para no interferir en futuros test
 		if (exito == true) {
 			try{
 				pool.acquireReusable();
 			}catch (NotFreeInstanceException exception2) {}
 		}
-		testPasados++;	
+		tearDown = false;	
 	}
 
 }
