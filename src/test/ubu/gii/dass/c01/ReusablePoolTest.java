@@ -1,7 +1,7 @@
 /**
  * 
  */
-package test.ubu.gii.dass.test.c01;
+package ubu.gii.dass.test.c01;
 
 import static org.junit.Assert.*;
 

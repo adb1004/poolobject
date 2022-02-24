@@ -1,4 +1,4 @@
-package main.ubu.gii.dass.c01;
+package ubu.gii.dass.c01;
 
 public class Reusable{
 	public String util(){
