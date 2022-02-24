@@ -13,10 +13,6 @@ public class ClientTest {
 	/**
 	 * Test que comprueba que se creen correctamente los objetos de la clase Client
 	 */
-	@Test
-	public void ClientClassTest(){
-			Client cliente = new Client();
-			assert(cliente instanceof Client);
-		}
+
 }
 
