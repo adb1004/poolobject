@@ -1,4 +1,4 @@
-package ubu.gii.dass.test.c01;
+package test.ubu.gii.dass.test.c01;
 
 import org.junit.Test;
 import main.ubu.gii.dass.c01.Reusable;

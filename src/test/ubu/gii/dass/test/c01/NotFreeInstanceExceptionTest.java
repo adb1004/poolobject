@@ -1,4 +1,4 @@
-package ubu.gii.dass.test.c01;
+package test.ubu.gii.dass.test.c01;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
