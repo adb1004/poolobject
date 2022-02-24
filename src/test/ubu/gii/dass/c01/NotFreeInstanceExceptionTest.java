@@ -7,7 +7,7 @@ import org.junit.*;
 import main.ubu.gii.dass.c01.*;
 
 /**
- * @author Iván Cortés Aliende
+ * @author Ivan Cortes Aliende
  * @author Alberto Diez Busto
  *
  */
@@ -35,7 +35,7 @@ public class NotFreeInstanceExceptionTest {
 
 	/**
 	 * Test que comprueba que salta la excepcion NotFreeInstanceException cuando se intenta sacar
-	 * un elemento de la pool y esta está vacía.
+	 * un elemento de la pool y esta esta vacia.
 	 */
 	@Test
 	public void NotFreeInstanceTest(){
@@ -46,7 +46,7 @@ public class NotFreeInstanceExceptionTest {
 				pool.acquireReusable();
 				contador++;
 			}catch (NotFreeInstanceException exception) {
-				assertTrue(exception.getMessage().equals("No hay más instancias reutilizables disponibles. Reintentalo más tarde"));
+				assertTrue(exception.getMessage().equals("No hay mas instancias reutilizables disponibles. Reintentalo mas tarde"));
 				assertEquals(contador, 2);
 				break;
 			}

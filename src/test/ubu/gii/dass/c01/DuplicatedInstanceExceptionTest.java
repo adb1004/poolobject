@@ -9,7 +9,7 @@ import main.ubu.gii.dass.c01.ReusablePool;
 
 
 /**
- * @author Iván Cortés Aliende
+ * @author Ivan Cortes Aliende
  * @author Alberto Diez Busto
  *
  */

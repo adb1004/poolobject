@@ -4,7 +4,7 @@ import org.junit.Test;
 import main.ubu.gii.dass.c01.Reusable;
 
 /**
- * @author Iván Cortés Aliende
+ * @author Ivan Cortes Aliende
  * @author Alberto Diez Busto
  *
  */
